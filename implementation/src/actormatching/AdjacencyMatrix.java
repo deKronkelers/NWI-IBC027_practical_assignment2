@@ -27,6 +27,33 @@ public class AdjacencyMatrix {
         }
     }
 
+    /**
+     * Given a list of actresses and actors set the females adjacent to all the
+     * males.
+     *
+     * @param matrix The adjacency matrix representing the actor graph
+     * @param actresses The list of actresses
+     * @param actors The list of actors
+     * @param female The females that are adjacent to the males
+     * @param male The males that are adjacent to the females
+     */
+    private static void fill(
+            AdjacencyMatrix matrix
+            , ArrayList<String> actresses
+            , ArrayList<String> actors
+            , ArrayList<String> female
+            , ArrayList<String> male
+    ) {
+        for (String woman : female) {
+            for (String man : male) {
+                matrix.setAdjacent(
+                        actresses.indexOf(woman)
+                        , actors.indexOf(man)
+                );
+            }
+        }
+    }
+
     private final int[][] matrix;
 
     public AdjacencyMatrix(int actors) {
