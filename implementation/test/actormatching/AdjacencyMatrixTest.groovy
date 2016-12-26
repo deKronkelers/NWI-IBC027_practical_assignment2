@@ -25,6 +25,7 @@ class AdjacencyMatrixTest extends GroovyTestCase {
     }
 
     void testToString() {
+        assert new AdjacencyMatrix(0).toString() == ""
         AdjacencyMatrix graph = new AdjacencyMatrix(2)
         assert graph.toString() == "[0, 0]\n[0, 0]"
         graph.matrix[0][0] = 1
