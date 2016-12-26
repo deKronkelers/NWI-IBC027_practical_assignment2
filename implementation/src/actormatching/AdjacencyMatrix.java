@@ -54,6 +54,41 @@ public class AdjacencyMatrix {
         }
     }
 
+    /**
+     * Read the cast of a given number of movies and set females adjacent to
+     * males with whom they starred in the same movie.
+     *
+     * @param matrix The adjacency matrix representing the actor graph
+     * @param scanner The scanner to read from
+     * @param nr_movies The number of movies to read
+     * @param actresses The list of actresses
+     * @param actors The list of actors
+     */
+    private static void readMovies(
+            AdjacencyMatrix matrix
+            , Scanner scanner
+            , int nr_movies
+            , ArrayList<String> actresses
+            , ArrayList<String> actors
+    ) {
+        for (int i = 0; i < nr_movies; i++) {
+            scanner.nextLine(); // skip title
+            final int cast_size = scanner.nextInt();
+            scanner.nextLine(); // skip rest of line
+            ArrayList<String> female = new ArrayList<>();
+            ArrayList<String> male = new ArrayList<>();
+            for (int k = 0; k < cast_size; k++) {
+                String actor = scanner.nextLine();
+                if (actors.contains(actor)) {
+                    male.add(actor);
+                } else {
+                    female.add(actor);
+                }
+            }
+            fill(matrix, actresses, actors, female, male);
+        }
+    }
+
     private final int[][] matrix;
 
     public AdjacencyMatrix(int actors) {
