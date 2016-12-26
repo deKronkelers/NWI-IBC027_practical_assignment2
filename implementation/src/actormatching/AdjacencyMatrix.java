@@ -34,7 +34,7 @@ public class AdjacencyMatrix {
     }
 
     public void setAdjacent(int actress, int actor) {
-        matrix[actress][actor]++;
+        matrix[actress][actor] = 1;
     }
 
     public boolean getAdjacent(int actress, int actor) {
