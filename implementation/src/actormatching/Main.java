@@ -6,6 +6,6 @@ package actormatching;
  */
 public class Main {
     public static void main(String[] args) {
-
+        AdjacencyMatrix graph = new AdjacencyMatrix(System.in);
     }
 }
