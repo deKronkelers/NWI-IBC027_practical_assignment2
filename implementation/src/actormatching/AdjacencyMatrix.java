@@ -2,7 +2,9 @@ package actormatching;
 
 import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Scanner;
+import java.util.stream.Collectors;
 
 /**
  * @author Hendrik Werner // s4549775
@@ -114,5 +116,12 @@ public class AdjacencyMatrix {
 
     public boolean getAdjacent(int actress, int actor) {
         return matrix[actress][actor] > 0;
+    }
+
+    @Override
+    public String toString() {
+        return Arrays.stream(matrix)
+                .map(Arrays::toString)
+                .collect(Collectors.joining("\n"));
     }
 }
