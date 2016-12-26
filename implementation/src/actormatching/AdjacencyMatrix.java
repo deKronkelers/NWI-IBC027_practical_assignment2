@@ -33,6 +33,19 @@ public class AdjacencyMatrix {
         matrix = new int[actors][actors];
     }
 
+    public AdjacencyMatrix(InputStream in) {
+        final Scanner input = new Scanner(in);
+        final int nr_actors = input.nextInt();
+        final int nr_movies = input.nextInt();
+        input.nextLine(); // skip rest of line
+        final ArrayList<String> actresses = new ArrayList<>(nr_actors);
+        final ArrayList<String> actors = new ArrayList<>(nr_actors);
+        readActors(input, nr_actors, actresses);
+        readActors(input, nr_actors, actors);
+        matrix = new int[nr_actors][nr_actors];
+        readMovies(this, input, nr_movies, actresses, actors);
+    }
+
     public void setAdjacent(int actress, int actor) {
         matrix[actress][actor] = 1;
     }
