@@ -77,10 +77,10 @@ public class AdjacencyMatrix {
             scanner.nextLine(); // skip title
             final int cast_size = scanner.nextInt();
             scanner.nextLine(); // skip rest of line
-            ArrayList<String> female = new ArrayList<>();
-            ArrayList<String> male = new ArrayList<>();
+            final ArrayList<String> female = new ArrayList<>();
+            final ArrayList<String> male = new ArrayList<>();
             for (int k = 0; k < cast_size; k++) {
-                String actor = scanner.nextLine();
+                final String actor = scanner.nextLine();
                 if (actors.contains(actor)) {
                     male.add(actor);
                 } else {
