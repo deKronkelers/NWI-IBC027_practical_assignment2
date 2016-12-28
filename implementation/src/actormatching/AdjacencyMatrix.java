@@ -3,6 +3,7 @@ package actormatching;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.Scanner;
 import java.util.stream.Collectors;
 
@@ -22,7 +23,7 @@ public class AdjacencyMatrix {
     private static void readActors(
             Scanner scanner
             , int nr_actors
-            , ArrayList<String> actors
+            , List<String> actors
     ) {
         for (int i = 0; i < nr_actors; i++) {
             actors.add(scanner.nextLine());
@@ -41,10 +42,10 @@ public class AdjacencyMatrix {
      */
     private static void fill(
             AdjacencyMatrix matrix
-            , ArrayList<String> actresses
-            , ArrayList<String> actors
-            , ArrayList<String> female
-            , ArrayList<String> male
+            , List<String> actresses
+            , List<String> actors
+            , List<String> female
+            , List<String> male
     ) {
         for (String woman : female) {
             for (String man : male) {
@@ -70,15 +71,15 @@ public class AdjacencyMatrix {
             AdjacencyMatrix matrix
             , Scanner scanner
             , int nr_movies
-            , ArrayList<String> actresses
-            , ArrayList<String> actors
+            , List<String> actresses
+            , List<String> actors
     ) {
         for (int i = 0; i < nr_movies; i++) {
             scanner.nextLine(); // skip title
             final int cast_size = scanner.nextInt();
             scanner.nextLine(); // skip rest of line
-            final ArrayList<String> female = new ArrayList<>();
-            final ArrayList<String> male = new ArrayList<>();
+            final List<String> female = new ArrayList<>();
+            final List<String> male = new ArrayList<>();
             for (int k = 0; k < cast_size; k++) {
                 final String actor = scanner.nextLine();
                 if (actors.contains(actor)) {
@@ -102,8 +103,8 @@ public class AdjacencyMatrix {
         final int nr_actors = input.nextInt();
         final int nr_movies = input.nextInt();
         input.nextLine(); // skip rest of line
-        final ArrayList<String> actresses = new ArrayList<>(nr_actors);
-        final ArrayList<String> actors = new ArrayList<>(nr_actors);
+        final List<String> actresses = new ArrayList<>(nr_actors);
+        final List<String> actors = new ArrayList<>(nr_actors);
         readActors(input, nr_actors, actresses);
         readActors(input, nr_actors, actors);
         matrix = new int[nr_actors][nr_actors];
