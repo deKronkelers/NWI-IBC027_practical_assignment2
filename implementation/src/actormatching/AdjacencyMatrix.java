@@ -10,12 +10,14 @@ import java.util.stream.Collectors;
  */
 public class AdjacencyMatrix {
     /**
-     * Read some number of actors from the given scanner and save them in some
-     * array list.
+     * Read some number of actors from the given scanner and save their indices
+     * and sex in maps.
      *
      * @param scanner The scanner to read from
      * @param nr_actors The number of actors to read
-     * @param actors The array list used to save actors
+     * @param indices The indices of the actors
+     * @param isMale The sex of the actors
+     * @param male The sex of the actors
      */
     private static void readActors(
             Scanner scanner
@@ -36,8 +38,7 @@ public class AdjacencyMatrix {
      * males.
      *
      * @param matrix The adjacency matrix representing the actor graph
-     * @param actresses The list of actresses
-     * @param actors The list of actors
+     * @param indices The indices of the actors
      * @param female The females that are adjacent to the males
      * @param male The males that are adjacent to the females
      */
@@ -64,8 +65,8 @@ public class AdjacencyMatrix {
      * @param matrix The adjacency matrix representing the actor graph
      * @param scanner The scanner to read from
      * @param nr_movies The number of movies to read
-     * @param actresses The list of actresses
-     * @param actors The list of actors
+     * @param indices The indices of the actors
+     * @param isMale The sex of the actors
      */
     private static void readMovies(
             AdjacencyMatrix matrix
