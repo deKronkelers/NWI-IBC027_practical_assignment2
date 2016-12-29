@@ -1,10 +1,13 @@
 package actormatching
 
+import groovy.transform.CompileStatic
+
 import java.nio.charset.StandardCharsets
 
 /**
  * @author Hendrik Werner // s4549775
  */
+@CompileStatic
 class AdjacencyMatrixIntegration extends GroovyTestCase {
     void testReadingAndPrinting() {
         InputStream stream = new FileInputStream("../samples/a1.in")
