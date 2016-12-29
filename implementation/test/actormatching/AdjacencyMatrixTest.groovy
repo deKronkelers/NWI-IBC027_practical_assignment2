@@ -1,8 +1,11 @@
 package actormatching
 
+import groovy.transform.TypeChecked
+
 /**
  * @author Hendrik Werner // s4549775
  */
+@TypeChecked
 class AdjacencyMatrixTest extends GroovyTestCase {
     void testSetAdjacent() {
         AdjacencyMatrix graph = new AdjacencyMatrix(1)
