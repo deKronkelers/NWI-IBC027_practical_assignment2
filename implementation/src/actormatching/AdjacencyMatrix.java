@@ -104,8 +104,8 @@ public class AdjacencyMatrix {
         final int nr_actors = input.nextInt();
         final int nr_movies = input.nextInt();
         input.nextLine(); // skip rest of line
-        final Map<String, Integer> indices = new HashMap<>();
-        final Map<String, Boolean> isMale = new HashMap<>();
+        final Map<String, Integer> indices = new HashMap<>(nr_actors * 2);
+        final Map<String, Boolean> isMale = new HashMap<>(nr_actors * 2);
         readActors(input, nr_actors, indices, isMale, false);
         readActors(input, nr_actors, indices, isMale, true);
         matrix = new int[nr_actors][nr_actors];
