@@ -1,10 +1,7 @@
 package actormatching;
 
 import java.io.InputStream;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 import java.util.stream.Collectors;
 
 /**
@@ -23,10 +20,14 @@ public class AdjacencyMatrix {
     private static void readActors(
             Scanner scanner
             , int nr_actors
-            , List<String> actors
+            , Map<String, Integer> indices
+            , Map<String, Boolean> isMale
+            , boolean male
     ) {
         for (int i = 0; i < nr_actors; i++) {
-            actors.add(scanner.nextLine());
+            String actor = scanner.nextLine();
+            indices.put(actor, i);
+            isMale.put(actor, male);
         }
     }
 
@@ -42,16 +43,15 @@ public class AdjacencyMatrix {
      */
     private static void fill(
             AdjacencyMatrix matrix
-            , List<String> actresses
-            , List<String> actors
+            , Map<String, Integer> indices
             , List<String> female
             , List<String> male
     ) {
         for (String woman : female) {
             for (String man : male) {
                 matrix.setAdjacent(
-                        actresses.indexOf(woman)
-                        , actors.indexOf(man)
+                        indices.get(woman)
+                        , indices.get(man)
                 );
             }
         }
@@ -71,8 +71,8 @@ public class AdjacencyMatrix {
             AdjacencyMatrix matrix
             , Scanner scanner
             , int nr_movies
-            , List<String> actresses
-            , List<String> actors
+            , Map<String, Integer> indices
+            , Map<String, Boolean> isMale
     ) {
         for (int i = 0; i < nr_movies; i++) {
             scanner.nextLine(); // skip title
@@ -82,13 +82,13 @@ public class AdjacencyMatrix {
             final List<String> male = new ArrayList<>();
             for (int k = 0; k < cast_size; k++) {
                 final String actor = scanner.nextLine();
-                if (actors.contains(actor)) {
+                if (isMale.get(actor)) {
                     male.add(actor);
                 } else {
                     female.add(actor);
                 }
             }
-            fill(matrix, actresses, actors, female, male);
+            fill(matrix, indices, female, male);
         }
     }
 
@@ -103,12 +103,12 @@ public class AdjacencyMatrix {
         final int nr_actors = input.nextInt();
         final int nr_movies = input.nextInt();
         input.nextLine(); // skip rest of line
-        final List<String> actresses = new ArrayList<>(nr_actors);
-        final List<String> actors = new ArrayList<>(nr_actors);
-        readActors(input, nr_actors, actresses);
-        readActors(input, nr_actors, actors);
+        final Map<String, Integer> indices = new HashMap<>();
+        final Map<String, Boolean> isMale = new HashMap<>();
+        readActors(input, nr_actors, indices, isMale, false);
+        readActors(input, nr_actors, indices, isMale, true);
         matrix = new int[nr_actors][nr_actors];
-        readMovies(this, input, nr_movies, actresses, actors);
+        readMovies(this, input, nr_movies, indices, isMale);
     }
 
     public void setAdjacent(int actress, int actor) {
