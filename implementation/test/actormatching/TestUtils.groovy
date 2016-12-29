@@ -1,8 +1,11 @@
 package actormatching
 
+import groovy.transform.CompileStatic
+
 /**
  * @author Hendrik Werner // s4549775
  */
+@CompileStatic
 class TestUtils {
     static Map<String, String> loadTestCases(File directory) {
         Map<String, String> testCases = [] as HashMap
