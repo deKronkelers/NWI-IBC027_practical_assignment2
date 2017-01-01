@@ -120,6 +120,17 @@ public class AdjacencyMatrix {
         return matrix[actress][actor] > 0;
     }
 
+    public Set<Integer> getAdjacentActresses(int actor) {
+        Set<Integer> adjacent = new HashSet<>();
+        int actresses = matrix.length;
+        for (int i = 0; i < actresses; i++) {
+            if (getAdjacent(i, actor)) {
+                adjacent.add(i);
+            }
+        }
+        return adjacent;
+    }
+
     @Override
     public String toString() {
         return Arrays.stream(matrix)
