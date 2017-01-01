@@ -35,4 +35,15 @@ class AdjacencyMatrixTest extends GroovyTestCase {
         graph.matrix[1][1] = 1
         assert graph.toString() == "[1, 0]\n[0, 1]"
     }
+
+    void testGetAdjacentActresses() {
+        AdjacencyMatrix graph = new AdjacencyMatrix(2)
+        for (int i = 0; i < 2; i++) {
+            assert graph.getAdjacentActresses(i) == [] as Set
+        }
+        graph.matrix[0][0] = 1
+        assert graph.getAdjacentActresses(0) == [0] as Set
+        graph.matrix[1][0] = 1
+        assert graph.getAdjacentActresses(0) == [0, 1] as Set
+    }
 }
