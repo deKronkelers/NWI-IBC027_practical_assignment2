@@ -131,6 +131,17 @@ public class AdjacencyMatrix {
         return adjacent;
     }
 
+    public Set<Integer> getAdjacentActors(int actress) {
+        Set<Integer> adjacent = new HashSet<>();
+        int actors = matrix[0].length;
+        for (int i = 0; i < actors; i++) {
+            if (getAdjacent(actress, i)) {
+                adjacent.add(i);
+            }
+        }
+        return adjacent;
+    }
+
     @Override
     public String toString() {
         return Arrays.stream(matrix)
