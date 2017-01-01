@@ -39,22 +39,22 @@ class AdjacencyMatrixTest extends GroovyTestCase {
     void testGetAdjacentActresses() {
         AdjacencyMatrix graph = new AdjacencyMatrix(2)
         for (int i = 0; i < 2; i++) {
-            assert graph.getAdjacentActresses(i) == [] as Set
+            assert graph.getAdjacentActresses(i) == [] as int[]
         }
         graph.matrix[0][0] = 1
-        assert graph.getAdjacentActresses(0) == [0] as Set
+        assert graph.getAdjacentActresses(0) == [0] as int[]
         graph.matrix[1][0] = 1
-        assert graph.getAdjacentActresses(0) == [0, 1] as Set
+        assert graph.getAdjacentActresses(0) == [0, 1] as int[]
     }
 
     void testGetAdjacentActors() {
         AdjacencyMatrix graph = new AdjacencyMatrix(2)
         for (int i = 0; i < 2; i++) {
-            assert graph.getAdjacentActors(i) == [] as Set
+            assert graph.getAdjacentActors(i) == [] as int[]
         }
         graph.matrix[0][0] = 1
-        assert graph.getAdjacentActors(0) == [0] as Set
+        assert graph.getAdjacentActors(0) == [0] as int[]
         graph.matrix[0][1] = 1
-        assert graph.getAdjacentActors(0) == [0, 1] as Set
+        assert graph.getAdjacentActors(0) == [0, 1] as int[]
     }
 }

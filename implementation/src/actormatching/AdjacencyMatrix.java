@@ -3,6 +3,7 @@ package actormatching;
 import java.io.InputStream;
 import java.util.*;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 /**
  * @author Hendrik Werner // s4549775
@@ -120,26 +121,16 @@ public class AdjacencyMatrix {
         return matrix[actress][actor] > 0;
     }
 
-    public Set<Integer> getAdjacentActresses(int actor) {
-        Set<Integer> adjacent = new HashSet<>();
-        int actresses = matrix.length;
-        for (int i = 0; i < actresses; i++) {
-            if (getAdjacent(i, actor)) {
-                adjacent.add(i);
-            }
-        }
-        return adjacent;
+    public int[] getAdjacentActresses(int actor) {
+        return IntStream.range(0, matrix.length)
+                .filter(i -> getAdjacent(i, actor))
+                .toArray();
     }
 
-    public Set<Integer> getAdjacentActors(int actress) {
-        Set<Integer> adjacent = new HashSet<>();
-        int actors = matrix[0].length;
-        for (int i = 0; i < actors; i++) {
-            if (getAdjacent(actress, i)) {
-                adjacent.add(i);
-            }
-        }
-        return adjacent;
+    public int[] getAdjacentActors(int actress) {
+        return IntStream.range(0, matrix[0].length)
+                .filter(i -> getAdjacent(actress, i))
+                .toArray();
     }
 
     @Override
