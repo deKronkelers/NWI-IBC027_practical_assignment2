@@ -7,5 +7,6 @@ package actormatching;
 public class Main {
     public static void main(String[] args) {
         AdjacencyMatrix graph = new AdjacencyMatrix(System.in);
+        System.out.print(new Game(graph).play());
     }
 }
