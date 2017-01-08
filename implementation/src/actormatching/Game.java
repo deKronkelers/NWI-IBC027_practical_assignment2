@@ -34,6 +34,10 @@ public class Game {
             }
         };
 
+        /**
+         * @param player The player
+         * @return The opponent of the player
+         */
         private static Player getOpponentOf(Player player) {
             switch (player) {
                 case Mark: return Veronique;
