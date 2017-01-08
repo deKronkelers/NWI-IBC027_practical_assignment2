@@ -21,8 +21,18 @@ public class Game {
     }
 
     private enum Player {
-        Veronique,
-        Mark;
+        Veronique {
+            @Override
+            int[] getCostars(AdjacencyMatrix graph, int actor) {
+                return graph.getAdjacentActors(actor);
+            }
+        },
+        Mark {
+            @Override
+            int[] getCostars(AdjacencyMatrix graph, int actor) {
+                return graph.getAdjacentActresses(actor);
+            }
+        };
 
         private static Player getOpponentOf(Player player) {
             switch (player) {
@@ -30,5 +40,12 @@ public class Game {
                 default: return Mark;
             }
         }
+
+        /**
+         * @param graph A graph of costars
+         * @param actor The index of an actor (or actress)
+         * @return The costars of the actor (or actress)
+         */
+        abstract int[] getCostars(AdjacencyMatrix graph, int actor);
     }
 }
