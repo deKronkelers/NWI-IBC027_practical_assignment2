@@ -119,11 +119,11 @@ public class AdjacencyMatrix {
         readMovies(this, input, nr_movies, indices, isMale);
     }
 
-    public void setAdjacent(int actress, int actor) {
+    private void setAdjacent(int actress, int actor) {
         matrix[actress][actor] = 1;
     }
 
-    public boolean getAdjacent(int actress, int actor) {
+    private boolean getAdjacent(int actress, int actor) {
         return matrix[actress][actor] > 0;
     }
 
