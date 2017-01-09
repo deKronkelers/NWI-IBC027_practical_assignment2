@@ -19,6 +19,16 @@ public class Game {
         if (candidates.length == 0) {
             return Player.getOpponentOf(player);
         }
+        for (int candidate : candidates) {
+            int[] costars = player.getCostars(graph, candidate);
+            player.ignore(graph, candidate);
+            if (makeMove(Player.getOpponentOf(player), costars) == player) {
+                player.unignore(graph, candidate);
+                return player;
+            }
+            player.unignore(graph, candidate);
+        }
+        return Player.getOpponentOf(player);
     }
 
     private enum Player {
