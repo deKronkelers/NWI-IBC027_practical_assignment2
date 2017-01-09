@@ -121,6 +121,10 @@ public class AdjacencyMatrix {
         return matrix[actress][actor] > 0;
     }
 
+    public int[] getActressIndices() {
+        return IntStream.range(0, matrix.length).toArray();
+    }
+
     public int[] getAdjacentActresses(int actor) {
         return IntStream.range(0, matrix.length)
                 .filter(i -> getAdjacent(i, actor))
