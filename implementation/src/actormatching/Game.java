@@ -12,6 +12,7 @@ public class Game {
     }
 
     public String play() {
+        return makeMove(Player.Veronique, graph.getActressIndices()).name();
     }
 
     public Player makeMove(Player player, int[] candidates) {
