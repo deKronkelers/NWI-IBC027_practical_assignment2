@@ -11,9 +11,9 @@ class GameIntegration extends GroovyTestCase {
         Map<File, String> testCases =
                 TestUtils.loadTestCases "../samples/" as File
         for (Map.Entry<File, String> testCase : testCases.entrySet()) {
-            InputStream input = new FileInputStream(testCase.getKey())
+            InputStream input = new FileInputStream(testCase.key)
             Game game = new Game(new AdjacencyMatrix(input))
-            assert game.play() == testCase.getValue()
+            assert game.play() == testCase.value
         }
     }
 }
