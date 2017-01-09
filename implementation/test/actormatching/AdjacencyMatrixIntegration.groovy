@@ -2,8 +2,6 @@ package actormatching
 
 import groovy.transform.CompileStatic
 
-import java.nio.charset.StandardCharsets
-
 /**
  * @author Hendrik Werner // s4549775
  */
@@ -17,14 +15,11 @@ class AdjacencyMatrixIntegration extends GroovyTestCase {
     }
 
     void testReadingPerformance() {
-        Map<String, String> testCases =
+        Map<File, String> testCases =
                 TestUtils.loadTestCases "../samples/" as File
-        for (String input in testCases.keySet()) {
+        for (File input in testCases.keySet()) {
             long start = System.currentTimeMillis()
-            InputStream stream = new ByteArrayInputStream(
-                    input.getBytes(StandardCharsets.US_ASCII)
-            )
-            new AdjacencyMatrix(stream)
+            new AdjacencyMatrix(new FileInputStream(input))
             assert System.currentTimeMillis() - start < 500
         }
     }

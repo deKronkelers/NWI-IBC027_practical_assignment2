@@ -7,14 +7,14 @@ import groovy.transform.CompileStatic
  */
 @CompileStatic
 class TestUtils {
-    static Map<String, String> loadTestCases(File directory) {
-        Map<String, String> testCases = [] as HashMap
+    static Map<File, String> loadTestCases(File directory) {
+        Map<File, String> testCases = [] as HashMap
         File[] inputs = directory.listFiles({
             File dir, String name -> name.endsWith ".in"
         } as FilenameFilter)
         for (File input in inputs) {
             String testOutput = (input.path.replace(".in", ".out") as File).text
-            testCases.put input.text, testOutput.trim()
+            testCases.put input, testOutput.trim()
         }
         testCases
     }
