@@ -27,6 +27,13 @@ class AdjacencyMatrixTest extends GroovyTestCase {
         assert graph.getAdjacent(0, 0)
     }
 
+    void testGetActressIndices() {
+        AdjacencyMatrix graph = new AdjacencyMatrix(3)
+        assert graph.actressIndices == [0, 1, 2] as int[]
+        graph.ignoredActresses[0] = true
+        assert graph.actressIndices == [1, 2] as int[]
+    }
+
     void testToString() {
         assert new AdjacencyMatrix(0).toString() == ""
         AdjacencyMatrix graph = new AdjacencyMatrix(2)
