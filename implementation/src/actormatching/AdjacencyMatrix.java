@@ -95,9 +95,13 @@ public class AdjacencyMatrix {
     }
 
     private final int[][] matrix;
+    private final boolean[] ignoredActors;
+    private final boolean[] ignoredActresses;
 
     public AdjacencyMatrix(int actors) {
         matrix = new int[actors][actors];
+        ignoredActors = new boolean[actors];
+        ignoredActresses = new boolean[actors];
     }
 
     public AdjacencyMatrix(InputStream in) {
@@ -110,6 +114,8 @@ public class AdjacencyMatrix {
         readActors(input, nr_actors, indices, isMale, false);
         readActors(input, nr_actors, indices, isMale, true);
         matrix = new int[nr_actors][nr_actors];
+        ignoredActors = new boolean[nr_actors];
+        ignoredActresses = new boolean[nr_actors];
         readMovies(this, input, nr_movies, indices, isMale);
     }
 
@@ -122,17 +128,37 @@ public class AdjacencyMatrix {
     }
 
     public int[] getActressIndices() {
-        return IntStream.range(0, matrix.length).toArray();
+        return IntStream.range(0, matrix.length)
+                .filter(i -> !ignoredActresses[i])
+                .toArray();
+    }
+
+    public void ignoreActress(int actress) {
+        ignoredActresses[actress] = true;
+    }
+
+    public void unignoreActress(int actress) {
+        ignoredActresses[actress] = false;
+    }
+
+    public void ignoreActor(int actor) {
+        ignoredActors[actor] = true;
+    }
+
+    public void unignoreActor(int actor) {
+        ignoredActors[actor] = false;
     }
 
     public int[] getAdjacentActresses(int actor) {
         return IntStream.range(0, matrix.length)
+                .filter(i -> !ignoredActresses[i])
                 .filter(i -> getAdjacent(i, actor))
                 .toArray();
     }
 
     public int[] getAdjacentActors(int actress) {
         return IntStream.range(0, matrix[0].length)
+                .filter(i -> !ignoredActors[i])
                 .filter(i -> getAdjacent(actress, i))
                 .toArray();
     }

@@ -27,11 +27,31 @@ public class Game {
             int[] getCostars(AdjacencyMatrix graph, int actor) {
                 return graph.getAdjacentActors(actor);
             }
+
+            @Override
+            void ignore(AdjacencyMatrix graph, int actor) {
+                graph.ignoreActress(actor);
+            }
+
+            @Override
+            void unignore(AdjacencyMatrix graph, int actor) {
+                graph.unignoreActress(actor);
+            }
         },
         Mark {
             @Override
             int[] getCostars(AdjacencyMatrix graph, int actor) {
                 return graph.getAdjacentActresses(actor);
+            }
+
+            @Override
+            void ignore(AdjacencyMatrix graph, int actor) {
+                graph.ignoreActor(actor);
+            }
+
+            @Override
+            void unignore(AdjacencyMatrix graph, int actor) {
+                graph.unignoreActor(actor);
             }
         };
 
@@ -52,5 +72,9 @@ public class Game {
          * @return The costars of the actor (or actress)
          */
         abstract int[] getCostars(AdjacencyMatrix graph, int actor);
+
+        abstract void ignore(AdjacencyMatrix graph, int actor);
+
+        abstract void unignore(AdjacencyMatrix graph, int actor);
     }
 }
